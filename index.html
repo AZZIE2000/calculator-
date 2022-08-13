@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>replit</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .all {
+        /* position: relative; */
+        background-image: url("https://g.top4top.io/p_2416hhs5g1.jpg");
+        background-repeat: no-repeat;
+        z-index: -2;
+        /* position: absolute; */
+        height: 100vh;
+        width: 100vw;
+        /* background-clip: content-box; */
+        background-position: center;
+        background-size: cover;
+      }
+      body {
+        position: relative;
+      }
+
+      .btns {
+        display: grid;
+        gap: 5px;
+        background-color: rgb(230, 138, 10);
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        box-shadow: 6px 6px 10px rgb(255, 255, 255) inset,
+          6px 6px 10px rgb(149, 134, 116);
+        border-radius: 10px;
+        max-height: 400px;
+        max-width: 300px;
+        margin: 20vh auto;
+        padding: 15px;
+        border: 5px solid rgb(0, 0, 0);
+        transform: scale(1.2);
+      }
+      .input {
+        background-color: white;
+        grid-column: 1/-1;
+        border-radius: 10px;
+        /* margin: 5px; */
+        overflow: hidden;
+        text-align: end;
+        font-size: 3rem;
+        border: 5px solid rgb(91, 91, 91);
+        padding-right: 5px;
+      }
+
+      #plus {
+        grid-column: -2/-1;
+        grid-row: 3/5;
+      }
+      #equals {
+        grid-column: -2/-1;
+        grid-row: 5/7;
+      }
+      #zero {
+        grid-column: 1/3;
+      }
+      .operator:hover,
+      .number:hover {
+        /* background-color: rgb(149, 149, 149); */
+      }
+      .operator:active,
+      .number:active {
+        /* background-color: rgb(191, 191, 191); */
+        box-shadow: -3px -3px 10px rgb(174, 174, 174) inset, 3px 3px 3px black;
+      }
+      .operator,
+      .number {
+        background-color: white;
+        box-shadow: 3px 3px 3px black;
+        margin: 1px;
+        border-radius: 10%;
+        border: none;
+        cursor: pointer;
+        font-size: 2.5rem;
+      }
+      #del {
+        font-size: 2rem;
+      }
+      footer {
+        /* z-index: 5616; */
+        width: 100vw;
+        bottom: 0px;
+        position: absolute;
+        /* background-color: rgb(255, 255, 255); */
+        height: 50px;
+      }
+      P {
+        color: white;
+        font-size: xx-large;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="all">
+      <div class="btns">
+        <input class="input" type="text" id="textValue" disabled />
+
+        <button class="clear operator" onclick="clearo()" id="clr">C</button>
+        <button class="operator" onclick="display('/')" id="divide">/</button>
+        <button class="operator" onclick="display('*')" id="multiply">*</button>
+        <button class="operator" onclick="display('-')" id="minus">
+          &minus;
+        </button>
+
+        <button class="number" onclick="display('7')" id="seven">7</button>
+        <button class="number" onclick="display('8')" id="eight">8</button>
+        <button class="number" onclick="display('9')" id="nine">9</button>
+        <button class="operator" onclick="display('+')" id="plus">+</button>
+
+        <button class="number" onclick="display('4')" id="four">4</button>
+        <button class="number" onclick="display('5')" id="five">5</button>
+        <button class="number" onclick="display('6')" id="six">6</button>
+
+        <button class="number" onclick="display('1')" id="one">1</button>
+        <button class="number" onclick="display('2')" id="two">2</button>
+        <button class="number" onclick="display('3')" id="three">3</button>
+        <button class="operator" onclick="equals()" id="equals">=</button>
+
+        <button class="number" onclick="display('0')" id="zero">0</button>
+        <button class="operator" onclick="del()" id="del">del</button>
+      </div>
+    </div>
+
+    <footer>
+      <marquee behavior="" direction="">
+        <p>
+          Attendees: DUA'A , AZZAM , RAMA , NOURMAN , IBRAHIM , WAAD , DAREEN.
+        </p></marquee
+      >
+    </footer>
+
+    <script>
+      function display(val) {
+        document.getElementById("textValue").value += val;
+      }
+      function equals() {
+        let num = document.getElementById("textValue").value;
+        let answer = eval(num);
+        document.getElementById("textValue").value = answer;
+      }
+      function clearo() {
+        document.getElementById("textValue").value = "";
+      }
+      function del() {
+        let theEq = document.getElementById("textValue").value;
+        let slicedNum = theEq.slice(0, theEq.length - 1);
+        document.getElementById("textValue").value = slicedNum;
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key == "0") {
+          document.getElementById("zero").click();
+        }
+        if (event.key == "1") {
+          document.getElementById("one").click();
+        }
+        if (event.key == "2") {
+          document.getElementById("two").click();
+        }
+        if (event.key == "3") {
+          document.getElementById("three").click();
+        }
+        if (event.key == "4") {
+          document.getElementById("four").click();
+        }
+        if (event.key == "5") {
+          document.getElementById("five").click();
+        }
+        if (event.key == "6") {
+          document.getElementById("six").click();
+        }
+        if (event.key == "7") {
+          document.getElementById("seven").click();
+        }
+        if (event.key == "8") {
+          document.getElementById("eight").click();
+        }
+        if (event.key == "9") {
+          document.getElementById("nine").click();
+        }
+        if (event.key == "+") {
+          document.getElementById("plus").click();
+        }
+        if (event.key == "-") {
+          document.getElementById("minus").click();
+        }
+        if (event.key == "*") {
+          document.getElementById("multiply").click();
+        }
+        if (event.key == "/") {
+          document.getElementById("divide").click();
+        }
+        if (event.key == "Backspace") {
+          document.getElementById("del").click();
+        }
+        if (event.key == "Delete") {
+          document.getElementById("clr").click();
+        }
+        if (event.key == "Enter") {
+          document.getElementById("equals").click();
+        }
+      });
+    </script>
+  </body>
+</html>
